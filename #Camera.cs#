@@ -1,0 +1,82 @@
+using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace MyProject
+{
+    public class Camera
+    {
+        private float fov = 45f;
+        private float nearPlaneDistance = 1f;
+        private float farPlaneDistance = 500f;
+
+
+        public Vector3 target;
+        public Vector3 position;
+
+        public Matrix projectionMatrix { get; set; }
+        public Matrix viewMatrix { get; set; }
+        public Matrix worldMatrix { get; set; }
+
+
+        private float speed = 0.2f;
+
+
+
+        public Camera(Vector3 position, Vector3 target)
+        {
+            this.position = position;
+            this.target = target;
+
+            
+
+            
+
+            viewMatrix = Matrix.CreateLookAt(position, target, Vector3.Up);
+
+            worldMatrix = Matrix.CreateWorld( Vector3.Zero, Vector3.Forward, Vector3.Up);
+
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+            projectionMatrix = Matrix.CreatePerspectiveFieldOfView
+                (
+                    MathHelper.ToRadians(fov),
+                    graphics.DisplayMode.AspectRatio,
+                    nearPlaneDistance,
+                    farPlaneDistance
+                );
+        }
+
+        public void Update()
+        {
+
+
+            if(Input.GetButtonDown(Keys.A))
+            {
+                position.X -= speed;
+                target.X -= speed;
+
+            }
+            if (Input.GetButtonDown(Keys.D))
+            {
+                position.X += speed;
+                target.X += speed;
+            }
+            if (Input.GetButtonDown(Keys.W))
+            {
+                position.Y += speed;
+                target.Y += speed;
+            }
+            if (Input.GetButtonDown(Keys.S))
+            {
+                position.Y -= speed;
+                target.Y -= speed;
+            }
+
+            viewMatrix = Matrix.CreateLookAt(position, target, Vector3.Up);
+        }
+    }
+}

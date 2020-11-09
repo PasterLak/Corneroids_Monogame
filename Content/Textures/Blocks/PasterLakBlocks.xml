@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<blockTextureAtlases>
+  <atlas>
+    <name>PasterLaktextures</name>
+    <key>PasterLakBlocks</key>
+    <texture>Textures/PasterLaktextures/blockTextures.png</texture>
+    <lightTexture>Textures/PasterLaktextures/lightTextureAtlas.png</lightTexture>
+    <blockSize>32</blockSize>
+  </atlas>
+</blockTextureAtlases>
