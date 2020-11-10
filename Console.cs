@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Corneroids
 {
-    public sealed class Chat 
+    public sealed class Console 
     {
 
         private const byte MaxMessages = 10;

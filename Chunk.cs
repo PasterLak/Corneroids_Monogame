@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +18,7 @@ namespace Corneroids
         private ushort[,,] blocks = new ushort[SIZE, SIZE, SIZE]; // 0 = no; 1+ = id
 
         private Vector3 pos = Vector3.Zero;
-        private Random random = new Random(4815);
+        
         // Mesh data
         private byte[,,] sides = new byte[SIZE, SIZE, SIZE];
 
@@ -43,11 +43,11 @@ namespace Corneroids
             this.chunkLocalPosition = chunkLocalPosition;
             this.camera = Engine.camera;
 
-            Testing.Start();
+            //Testing.Start();
             CreateData();
 
             
-            Testing.End();
+            //Testing.End();
         }
 
         public void CreateStructure()
@@ -136,7 +136,7 @@ namespace Corneroids
 
         private void GenerateBlock(byte sides, ushort blockID)
         {
-            Vector2[] uv = Resources.GetBlockTexureCoord((byte)random.Next(10), 0);
+            Vector2[] uv = Resources.GetBlockTexureCoord((byte)Engine.world.random.Next(10), 0);
 
 
             if (sides >= 32)

@@ -154,11 +154,7 @@ namespace Corneroids
                 if (Vector3.Distance(chunksToDraw[i].chunkPosition, Engine.camera.Position) <= Settings.viewDistance)
                 {
                     chunksToDraw[i].DrawChunk();
-                    if (chunksToDraw[i].boundingBox.Intersects(Engine.camera.boundingSphere))
-                    {
-                        //System.Console.WriteLine("Collision");
-                        //Chat.SendMessage("Collision !");
-                    }
+                   
                 }
                 
             }

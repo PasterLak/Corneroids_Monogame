@@ -43,7 +43,7 @@ namespace Corneroids
                 ItemSet tom = new ItemSet() { Name = "Tom", BlocksCount = 35 };
 
                 await JsonSerializer.SerializeAsync<ItemSet>(fs, tom);
-                Console.WriteLine("Data has been saved to file");
+                System.Console.WriteLine("Data has been saved to file");
             }
 
         }
@@ -57,7 +57,7 @@ namespace Corneroids
             {
                 ItemSet restoredPerson = await JsonSerializer.DeserializeAsync<ItemSet>(fs);
 
-                Console.WriteLine($"Name: {restoredPerson.Name}  Age: {restoredPerson.BlocksCount}");
+                System.Console.WriteLine($"Name: {restoredPerson.Name}  Age: {restoredPerson.BlocksCount}");
             }
         }
 

@@ -1,16 +1,16 @@
 ﻿using System;
+
 namespace Corneroids
 {
-    public class Player
+    public class Player : Mob
     {
         private byte id;
-        private string name;
 
         private Inventory inventory;
         private Camera camera;
-        // picked block
+        
 
-        public Player()
+        public Player(string name, short hp) : base (name, hp)
         {
             inventory = new Inventory(5,5);
             

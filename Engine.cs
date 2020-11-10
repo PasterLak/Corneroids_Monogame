@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -53,8 +53,10 @@ namespace Corneroids
             graphics = new GraphicsDeviceManager(this);
             
 
-            Console.Clear();
-            Console.WriteLine("-------------------------------------------------");
+            Debug.Clear();
+            Debug.WriteLine("-------------------------------------------------");
+            Debug.WriteLine("Engine started!", System.ConsoleColor.DarkGreen);
+            
 
             fps = new FPS();
             
@@ -84,7 +86,7 @@ namespace Corneroids
             mouse = new MouseDevice();
             Input = new KeyboardDevice();
             saveManager = new SaveManager();
-            world = new World();
+            world = new World(481516);
 
             camera = new Camera(new Vector3(0, 0, -40));
             window = Window;
@@ -127,7 +129,6 @@ namespace Corneroids
         {
             OnAwake?.Invoke();
 
-            
             Mouse.SetCursor(MouseCursor.FromTexture2D(mouseCursor, 0, 0));
 
 
@@ -145,14 +146,14 @@ namespace Corneroids
 
             asteroid.CreateChunks();
 
-            Chat.Active = true;
+            Console.Active = true;
 
-            Chat.SendMessage("Welcome to Corneroids!", Color.Yellow, "System");
-            Chat.SendMessage("Write /help to get the list of commands", Color.Yellow);
+            Console.SendMessage("Welcome to Corneroids!", Color.Yellow, "System");
+            Console.SendMessage("Write /help to get the list of commands", Color.Yellow);
 
             //Chat.SendMessage("How are you dude?", Color.White, PlayerName);
 
-            Chat.OnStart();
+            Console.OnStart();
             
             OnStart = null;
         }
@@ -218,7 +219,7 @@ namespace Corneroids
 
             if (Input.GetKeyDown(Keys.M))
             {
-                Chat.SendMessage("Hello!", Color.White, PlayerName);
+                Console.SendMessage("Hello!", Color.White, PlayerName);
              
 
                 //Ray ray = new Ray(camera.Position, Vector3.Forward);
@@ -284,7 +285,8 @@ namespace Corneroids
 
             spriteBatch.Begin();
             
-            spriteBatch.DrawString(font, "Corneroids on Monogame Framework v " + Application.GameVersion, new Vector2(5, 30), Color.Yellow);
+            spriteBatch.DrawString(font, "Corneroids on Monogame Framework v "
+                + Application.GameVersion + "  (" + Application.Date.ToShortDateString() + ")", new Vector2(5, 30), Color.Yellow);
             spriteBatch.DrawString(font, GraphicsDevice.Adapter.Description, new Vector2(5, 50), Color.White);
             spriteBatch.DrawString(font, osNameAndVersion.VersionString, new Vector2(5, 70), Color.White);
 
@@ -293,7 +295,7 @@ namespace Corneroids
 
             spriteBatch.DrawString(font, "+",AppWindow.GetScreenCenter , Color.White);
 
-            Chat.DrawMessages();
+            Console.DrawMessages();
             //windowLayer.Render();
             //dis.Render();
 
@@ -306,21 +308,17 @@ namespace Corneroids
         }
 
 
-        public static void Log(string consoleMessage)
-        {
-            Console.WriteLine(consoleMessage);
-        }
-
+        
 
         public static int GetW()
         {
-            
-            Console.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
+
+            Debug.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
             return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         }
         public static int GetH()
         {
-            Console.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+            Debug.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         }
 

@@ -18,7 +18,7 @@ public class Testing
         public static void Start(Mode mode = Mode.detailed)
         {
             _mode = mode;
-            Console.WriteLine("Start Stopwatch");
+        System.Console.WriteLine("Start Stopwatch");
             _stopwatch.Start();
         }
 
@@ -28,7 +28,7 @@ public class Testing
 
             if (_mode == Mode.detailed)
             {
-                Console.WriteLine("Stopwatch result: " + _stopwatch.Elapsed);
+            System.Console.WriteLine("Stopwatch result: " + _stopwatch.Elapsed);
                 
             }
             else
@@ -39,7 +39,7 @@ public class Testing
                     ts.Hours, ts.Minutes, ts.Seconds,
                     ts.Milliseconds );
 
-                Console.WriteLine("Stopwatch result: " + elapsedTime);
+            System.Console.WriteLine("Stopwatch result: " + elapsedTime);
             //if (writeInGameConsole) GameConsole.SendMessage("Stopwatch result: " + elapsedTime, Color.Red);
 
 

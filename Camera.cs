@@ -9,7 +9,7 @@ namespace Corneroids
         
         private float nearPlaneDistance = 0.3f;
         private float farPlaneDistance = 1000f;
-
+        
 
         private Vector3 target;
         private Vector3 position;
@@ -41,6 +41,7 @@ namespace Corneroids
         }
 
         public Matrix projectionMatrix { get; set; }
+
         public Matrix viewMatrix
         {
             get
@@ -55,7 +56,7 @@ namespace Corneroids
 
         private Vector3 mouseRotationBuffer;
 
-        public BoundingSphere boundingSphere;
+        
 
         public Camera(Vector3 position)
         {
@@ -77,7 +78,7 @@ namespace Corneroids
 
             Engine.mouse.CursorBehavior = MouseDevice.Behavior.Wrapped;
 
-            boundingSphere = new BoundingSphere(Vector3.Zero, 5f);
+            
             
 
         }
@@ -93,7 +94,7 @@ namespace Corneroids
 
         private void UpdateLookAt()
         {
-            Matrix rotationMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) ;
+            Matrix rotationMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y);
             //Matrix rotationMatrix = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
 
             //rotationMatrix = Matrix.CreateFromQuaternion(new Quaternion(rotation, 0));
@@ -105,7 +106,7 @@ namespace Corneroids
 
         private Vector3 PreviewMove(Vector3 amount)
         {
-            Matrix rotate = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z);
+            Matrix rotate = Matrix.CreateRotationY(rotation.Y) ;
 
             //Matrix rotate = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
 
@@ -172,17 +173,18 @@ namespace Corneroids
 
                 if (mouseRotationBuffer.Y < MathHelper.ToRadians(-75f))
                     mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-75f));
-                mouseRotationBuffer.Y += mouseRotationBuffer.Y;
+                
 
                 if (mouseRotationBuffer.Y > MathHelper.ToRadians(75f))
                     mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75f));
-                mouseRotationBuffer.Y += mouseRotationBuffer.Y;
+                
 
                 Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75f), MathHelper.ToRadians(75f)),
                     MathHelper.WrapAngle(mouseRotationBuffer.X), 0
                     );
             }
 
+            
             //Vector3 v = new Vector3(20,0,0);
             //boundingSphere.Contains(ref v, out ContainmentType r);
             //System.Console.WriteLine(r);
