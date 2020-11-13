@@ -14,9 +14,10 @@ namespace Corneroids.GUI
 
 		protected Texture2D blankTexture;
 
-		public WindowLayer(Rectangle position) : base(position)
+		public WindowLayer(Rectangle positionAndSize) : base(positionAndSize)
 		{
 			this.blankTexture = Resources.LoadTexture2D("Content/blank.png");
+			//blankTexture = new Texture2D(Engine.graphicsDevice, 64,64);
 		}
 
 		public override void Render()

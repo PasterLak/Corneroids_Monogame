@@ -38,40 +38,44 @@ namespace Corneroids
 			}
 		}
 
-		//public bool LeftClick()
-		//{
-		//	if(mouseState.LeftButton == null && this.previousMouseState.LeftButton)
-		//	{ }
-		//	return this.mouseState.LeftButton = null && this.previousMouseState.LeftButton = 1;
-		//}
+        public bool LeftClick()
+        {
+			return mouseState.LeftButton == ButtonState.Released
+				&& previousMouseState.LeftButton == ButtonState.Pressed;
 
-		//public bool LeftDown()
-		//{
-		//	return this.mouseState.LeftButton == 1;
-		//}
+		}
 
-		//public bool RightClick()
-		//{
-		//	return this.mouseState.RightButton == null && this.previousMouseState.RightButton == 1;
-		//}
-
-		//public bool RightDown()
-		//{
+        public bool LeftDown()
+        {
+			if (mouseState.LeftButton == ButtonState.Pressed)
+				return true;
+			else
+				return false;
 			
-		//	return mouseState.RightButton;
-		//}
+        }
 
-		//public bool MiddleClick()
-		//{
-		//	return this.mouseState.MiddleButton == null && this.previousMouseState.MiddleButton == 1;
-		//}
+        //public bool RightClick()
+        //{
+        //	return this.mouseState.RightButton == null && this.previousMouseState.RightButton == 1;
+        //}
 
-		//public bool MiddleDown()
-		//{
-		//	return this.mouseState.MiddleButton == 1;
-		//}
+        //public bool RightDown()
+        //{
 
-		public void RestoreState()
+        //	return mouseState.RightButton;
+        //}
+
+        //public bool MiddleClick()
+        //{
+        //	return this.mouseState.MiddleButton == null && this.previousMouseState.MiddleButton == 1;
+        //}
+
+        //public bool MiddleDown()
+        //{
+        //	return this.mouseState.MiddleButton == 1;
+        //}
+
+        public void RestoreState()
 		{
 			this.behavior = this.storedBehavior;
 		}

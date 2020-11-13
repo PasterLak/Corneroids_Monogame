@@ -1,12 +1,15 @@
-﻿
+
 
 Version 0.4
 
  - GIT added
  - project structure update
+ - added collision
+ - buttons
 
 
 Version 0.3 (2020, 09, 15)
 
  - old
 
+  

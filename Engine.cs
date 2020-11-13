@@ -34,9 +34,9 @@ namespace Corneroids
         public static SpriteFont font;
         private FPS fps;
         public static World world;
-
+        
         private Skybox skybox;
-        private SpaceEntity asteroid;
+        public static SpaceEntity asteroid;
 
         private SaveManager saveManager;
         public static MouseDevice mouse { get; private set; }
@@ -45,8 +45,9 @@ namespace Corneroids
         private bool UseBackFaceCulling = false;
         private bool UseDepthStencil = true;
 
-       
+        BillboardSystem dust;
 
+        GUI.ButtonLayer button;
 
         public Engine()
         {
@@ -54,8 +55,8 @@ namespace Corneroids
             
 
             Debug.Clear();
-            Debug.WriteLine("-------------------------------------------------");
-            Debug.WriteLine("Engine started!", System.ConsoleColor.DarkGreen);
+            Debug.Log("-------------------------------------------------");
+            Debug.Log("Engine started!", System.ConsoleColor.DarkGreen);
             
 
             fps = new FPS();
@@ -88,7 +89,7 @@ namespace Corneroids
             saveManager = new SaveManager();
             world = new World(481516);
 
-            camera = new Camera(new Vector3(0, 0, -40));
+            
             window = Window;
             AppWindow.SetDefaultWindow();
             Window.AllowUserResizing = true;
@@ -96,12 +97,12 @@ namespace Corneroids
        
             
             asteroid = new SpaceEntity(Vector3.Zero);
-            
+            camera = new Camera(new Vector3(0, 0, -40));
 
             windowLayer = new GUI.WindowLayer(new Rectangle (15,15,500,256));
             windowLayer.Name = "Test";
 
-            
+           
             
 
             base.Initialize();
@@ -116,13 +117,20 @@ namespace Corneroids
             font = Content.Load<SpriteFont>("basic");
             skybox = new Skybox(Resources.LoadTexture2D("Content/skybox.jpg"));
 
-            List<string> list = new List<string>() { "Hello", "123" };
+            List<string> s = new List<string>() { "21e", "efwefwe", "fewxewcfew" };
+            dis = new GUI.DescriptionLayer(s);
 
-            dis = new GUI.DescriptionLayer(list);
+            button = new GUI.ButtonLayer(new Rectangle(500,500, 100, 20), "Start!");
+            button.OnClicked += Clicked;
 
             Awake();
             Start();
 
+        }
+
+        void Clicked()
+        {
+            Debug.Log("cLICKED!");
         }
 
         private void Awake()
@@ -131,6 +139,10 @@ namespace Corneroids
 
             Mouse.SetCursor(MouseCursor.FromTexture2D(mouseCursor, 0, 0));
 
+            Texture2D tex = Chunk.texture;
+            if (tex == null) Debug.Error("Null");
+            Vector3[] v = new Vector3[1] { new Vector3(0, 0, 0) };
+            dust = new BillboardSystem(graphicsDevice, contentManager, tex, new Vector2(100, 100), v);
 
             OnAwake = null;
         }
@@ -220,17 +232,23 @@ namespace Corneroids
             if (Input.GetKeyDown(Keys.M))
             {
                 Console.SendMessage("Hello!", Color.White, PlayerName);
-             
 
-                //Ray ray = new Ray(camera.Position, Vector3.Forward);
-                //ray.Intersects();
 
-                
+                Ray ray = new Ray(camera.Position, camera.target );
+
+                float? f = ray.Intersects(asteroid.chunksToDraw[0].boundingBoxBig);
+
+                if(f != null)
+                Debug.Log(f);
+
+
                 
             }
 
+            button.UpdateInput(mouse);
 
             
+
             camera.Update(gameTime);
             var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             
@@ -268,7 +286,7 @@ namespace Corneroids
 
             skybox.Render();
             asteroid.Draw();
-
+            dust.Draw(camera, Vector3.Up, Vector3.Right);
 
             DrawGUI(gameTime);
 
@@ -290,14 +308,17 @@ namespace Corneroids
             spriteBatch.DrawString(font, GraphicsDevice.Adapter.Description, new Vector2(5, 50), Color.White);
             spriteBatch.DrawString(font, osNameAndVersion.VersionString, new Vector2(5, 70), Color.White);
 
-            
+            dis.Render();
+            dis.Location = new Point(500,500);
             //spriteBatch.DrawString(font, "Asteroid", new Vector2(5, 70), Color.LightGreen);
 
             spriteBatch.DrawString(font, "+",AppWindow.GetScreenCenter , Color.White);
 
             Console.DrawMessages();
-            //windowLayer.Render();
+            windowLayer.Render();
             //dis.Render();
+            button.Render();
+            
 
             camera.DrawDebug();
             fps.DrawFpsCount(gameTime);
@@ -313,12 +334,12 @@ namespace Corneroids
         public static int GetW()
         {
 
-            Debug.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
+            Debug.Log(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
             return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         }
         public static int GetH()
         {
-            Debug.WriteLine(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+            Debug.Log(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         }
 

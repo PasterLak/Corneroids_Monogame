@@ -14,7 +14,7 @@ namespace Corneroids
 
         private Chunk[,,] _chunks = new Chunk[SIZE, SIZE, SIZE];
         private byte[,,] chunksData = new byte[SIZE, SIZE, SIZE];
-        private List<Chunk> chunksToDraw = new List<Chunk>();
+        public List<Chunk> chunksToDraw = new List<Chunk>();
         private List<Vector3Sbyte> existingChunks = new List<Vector3Sbyte>();
 
      
@@ -143,6 +143,19 @@ namespace Corneroids
             return position;
         }
 
+        public bool CheckCollision()
+        {
+            for (ushort i = 0; i < chunksToDraw.Count; i++) // 32 max or Int
+            {
+                if(Engine.camera.CollidesWith(chunksToDraw[i]))
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
 
         public void Draw()
         {
@@ -154,7 +167,8 @@ namespace Corneroids
                 if (Vector3.Distance(chunksToDraw[i].chunkPosition, Engine.camera.Position) <= Settings.viewDistance)
                 {
                     chunksToDraw[i].DrawChunk();
-                   
+                    
+
                 }
                 
             }

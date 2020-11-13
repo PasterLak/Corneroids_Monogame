@@ -30,7 +30,8 @@ namespace Corneroids
         private VertexBuffer vertexBuffer;
         private BasicEffect effect;
         private IndexBuffer indexBuffer;
-        public BoundingBox boundingBox;
+        public BoundingBox[,,] boundingBox;
+        public BoundingBox boundingBoxBig;
 
         private Camera camera;
 
@@ -46,7 +47,7 @@ namespace Corneroids
             //Testing.Start();
             CreateData();
 
-            
+            boundingBox = new BoundingBox[SIZE, SIZE, SIZE];
             //Testing.End();
         }
 
@@ -55,6 +56,7 @@ namespace Corneroids
             FillSidesData();
             CreateBlocks();
             CreateMesh();
+            
         }
 
         public ushort GetBlockID(byte x, byte y, byte z)
@@ -74,8 +76,11 @@ namespace Corneroids
                 {
                     for (byte z = 0; z < SIZE; z++)
                     {
-                        // id
+                        
                         blocks[x, y, z] = 1;
+                        
+                        
+
                         spaceEntity.BlocksCount++;
                         spaceEntity.Mass += 10;
                     }
@@ -122,7 +127,9 @@ namespace Corneroids
 
                             GenerateBlock(sides[x, y, z], blocks[x,y,z]);
 
-                            
+                            boundingBox[x, y, z].Min = pos;
+                            boundingBox[x, y, z].Max = pos + new Vector3(1, 1, 1);
+
                         }
 
 
@@ -280,8 +287,8 @@ namespace Corneroids
 
             min = Vector3.Min(min, t1);
             max = Vector3.Max(max, t2);
-            boundingBox = new BoundingBox( t1, t2);
 
+            boundingBoxBig = new BoundingBox(chunkPosition, chunkPosition + new Vector3(SIZE, SIZE, SIZE));
             //Console.WriteLine(new Vector3(chunkPosition.X, chunkPosition.Y, chunkPosition.Z));
 
 
@@ -332,6 +339,7 @@ namespace Corneroids
                     0, verts.Count, triangles.ToArray(), 0, (int)(triangles.Count/3f));
 
             }
+
         }
 
 

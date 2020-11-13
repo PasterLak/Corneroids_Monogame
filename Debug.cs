@@ -7,19 +7,15 @@ namespace Corneroids
     public class Debug
     {
 
-        public static void Write(object obj)
-        {
-            System.Console.Write(obj);
-        }
 
-        public static void WriteLine(object obj)
+        public static void Log(object obj)
         {
 
             System.Console.WriteLine(obj);
             
         }
 
-        public static void WriteLine(object obj, ConsoleColor color)
+        public static void Log(object obj, ConsoleColor color)
         {
 
             ConsoleColor standartColor = System.Console.BackgroundColor;

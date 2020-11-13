@@ -18,7 +18,7 @@ public class Testing
         public static void Start(Mode mode = Mode.detailed)
         {
             _mode = mode;
-        System.Console.WriteLine("Start Stopwatch");
+            System.Console.WriteLine("Start Stopwatch");
             _stopwatch.Start();
         }
 
@@ -29,8 +29,10 @@ public class Testing
             if (_mode == Mode.detailed)
             {
             System.Console.WriteLine("Stopwatch result: " + _stopwatch.Elapsed);
-                
-            }
+            //if (writeInGameConsole)
+            //    Corneroids.Console.SendMessage("Stopwatch result: " + _stopwatch.Elapsed, Color.Red);
+
+        }
             else
             {
                 TimeSpan ts = _stopwatch.Elapsed;
@@ -40,7 +42,8 @@ public class Testing
                     ts.Milliseconds );
 
             System.Console.WriteLine("Stopwatch result: " + elapsedTime);
-            //if (writeInGameConsole) GameConsole.SendMessage("Stopwatch result: " + elapsedTime, Color.Red);
+            //if (writeInGameConsole)
+            //    Corneroids.Console.SendMessage("Stopwatch result: " + elapsedTime, Color.Red);
 
 
             }

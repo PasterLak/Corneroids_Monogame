@@ -7,13 +7,15 @@ namespace Corneroids
     public class Camera
     {
         
-        private float nearPlaneDistance = 0.3f;
+        private float nearPlaneDistance = 0.1f;
         private float farPlaneDistance = 1000f;
         
 
-        private Vector3 target;
+        public Vector3 target;
         private Vector3 position;
         private Vector3 rotation = Vector3.Zero;
+
+        private Vector3 oldPos;
 
         public Vector3 Position
         {
@@ -56,7 +58,7 @@ namespace Corneroids
 
         private Vector3 mouseRotationBuffer;
 
-        
+        private BoundingSphere boundingSphere;
 
         public Camera(Vector3 position)
         {
@@ -76,11 +78,11 @@ namespace Corneroids
 
             MoveTo(position, rotation);
 
-            Engine.mouse.CursorBehavior = MouseDevice.Behavior.Wrapped;
+            //Engine.mouse.CursorBehavior = MouseDevice.Behavior.Wrapped;
 
-            
-            
 
+            boundingSphere = new BoundingSphere(position, 0.25f);
+            
         }
 
         
@@ -101,7 +103,22 @@ namespace Corneroids
 
             Vector3 lookAtOffset = Vector3.Transform(Vector3.UnitZ, rotationMatrix);
 
-            target = position + lookAtOffset;
+            boundingSphere.Center = Position;
+
+            if (Engine.asteroid.CheckCollision() == true)
+            {
+                boundingSphere.Center = oldPos;
+                position = oldPos;
+            }
+            else
+            {
+                
+                target = position + lookAtOffset;
+
+            }
+
+            
+
         }
 
         private Vector3 PreviewMove(Vector3 amount)
@@ -146,12 +163,12 @@ namespace Corneroids
 
             if(movingVector != Vector3.Zero)
             {
-                
+                oldPos = position;
                 movingVector.Normalize();
 
                 if (Input.GetButton(Keys.LeftShift))
                 {
-                    movingVector *= speed * 2 * delta;
+                    movingVector *= speed * 6 * delta;
                
                 }
                     
@@ -160,9 +177,15 @@ namespace Corneroids
                     movingVector *= speed * delta;
                
                 }
-                    
-                Move(movingVector);
+
                 
+                    Move(movingVector);
+
+                
+
+
+
+
             }
              
 
@@ -196,11 +219,31 @@ namespace Corneroids
         {
             Engine.spriteBatch.DrawString(
                 Engine.font, $"x:{(int)position.X} y:{(int)position.Y} z:{(int)position.Z}" ,
-                new Vector2(5, Engine.window.ClientBounds.Height - Engine.window.ClientBounds.Height / 100 * 10),
+                new Vector2(5, Engine.window.ClientBounds.Height - Engine.window.ClientBounds.Height / 100 * 25),
                 Color.White);
             
+
         }
 
+        public bool CollidesWith (Chunk ch)
+        {
 
-     }
+            for (byte x = 0; x < Chunk.SIZE; x++)
+            {
+                for (byte y = 0; y < Chunk.SIZE; y++)
+                {
+                    for (byte z = 0; z < Chunk.SIZE; z++)
+                    {
+                        if (boundingSphere.Intersects(ch.boundingBox[x,y,z]))
+                            return true;
+                    }
+                }
+            }
+            
+
+
+            return false;
+        }
+
+    }
 }
