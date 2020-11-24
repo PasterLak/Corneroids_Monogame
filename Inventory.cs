@@ -8,8 +8,7 @@ namespace Corneroids
         private byte width;
         private byte height;
 
-        // items
-
+        private Item[,] items;
         private Player owner;
 
 
@@ -17,6 +16,8 @@ namespace Corneroids
         {
             this.width = width;
             this.height = height;
+
+            items = new Item[width, height];
         }
 
          

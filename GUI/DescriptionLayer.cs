@@ -14,32 +14,32 @@ namespace Corneroids.GUI
 		public DescriptionLayer(List<string> lines) : base(Rectangle.Empty)
 		{
 			this.lines = new List<string>();
-			this.Lines = lines;
+			Lines = lines;
 		}
 
 		public void Addline(string line)
 		{
 			if (!string.IsNullOrEmpty(line))
 			{
-				this.lines.Add(line);
+				lines.Add(line);
 			}
-			this.UpdateLines();
+			UpdateLines();
 		}
-
+		
 		public override void Render()
 		{
 			base.Render();
-			if (this.lines != null)
+			if (lines != null)
 			{
-				Vector2 vector = this.Position;
+				Vector2 vector = Position;
 				//Engine.spriteBatch.Begin();
 
-				foreach (string text in this.lines)
+				foreach (string text in lines)
 				{
 					if (!string.IsNullOrEmpty(text))
 					{
 						Engine.spriteBatch.DrawString(Engine.font, text, vector, Color.White);
-						vector += Vector2.UnitY * this.lineSize;
+						vector += Vector2.UnitY * lineSize;
 					}
 				}
 				//Engine.spriteBatch.End();
@@ -48,26 +48,26 @@ namespace Corneroids.GUI
 
 		public void SetLine(string line)
 		{
-			this.lines.Clear();
+			lines.Clear();
 			if (!string.IsNullOrEmpty(line))
 			{
-				this.lines.Add(line);
+				lines.Add(line);
 			}
-			this.UpdateLines();
+			UpdateLines();
 		}
 
 		public List<string> Lines
 		{
 			set
 			{
-				this.lines.Clear();
+				lines.Clear();
 				if (value != null)
 				{
 					foreach (string item in value)
 					{
-						this.lines.Add(item);
+						lines.Add(item);
 					}
-					this.UpdateLines();
+					UpdateLines();
 				}
 			}
 		}

@@ -68,10 +68,6 @@ namespace Corneroids
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            
-            
-
-            
 
         }
 
@@ -290,7 +286,6 @@ namespace Corneroids
 
             DrawGUI(gameTime);
 
-            
 
 
             base.Draw(gameTime);
@@ -308,16 +303,16 @@ namespace Corneroids
             spriteBatch.DrawString(font, GraphicsDevice.Adapter.Description, new Vector2(5, 50), Color.White);
             spriteBatch.DrawString(font, osNameAndVersion.VersionString, new Vector2(5, 70), Color.White);
 
-            dis.Render();
-            dis.Location = new Point(500,500);
+            //dis.Render();
+            //dis.Location = new Point(500,500);
             //spriteBatch.DrawString(font, "Asteroid", new Vector2(5, 70), Color.LightGreen);
 
             spriteBatch.DrawString(font, "+",AppWindow.GetScreenCenter , Color.White);
 
             Console.DrawMessages();
-            windowLayer.Render();
+            //windowLayer.Render();
             //dis.Render();
-            button.Render();
+            //button.Render();
             
 
             camera.DrawDebug();

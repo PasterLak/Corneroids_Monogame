@@ -23,25 +23,25 @@ namespace Corneroids.GUI
 
 		public ButtonLayer(Rectangle position, string buttonText) : base(position)
 		{
-			this.clicked = false;
+			clicked = false;
 			this.buttonText = buttonText;
-			this.parsedButtonText = buttonText;
-			base.Name = buttonText;
-			this.pressedLayer = new FieldLayer(position);
-			this.layers.Add(this.pressedLayer);
-			this.UpdateButtonText();
+			parsedButtonText = buttonText;
+			Name = buttonText;
+			pressedLayer = new FieldLayer(position);
+			layers.Add(pressedLayer);
+			UpdateButtonText();
 		}
 
 		public override void Render()
 		{
-			if (!this.clicked && !this.forceChecked)
+			if (!clicked && !forceChecked)
 			{
 				base.Render();
 			}
 			else
 			{
 				
-				this.pressedLayer.Render();
+				pressedLayer.Render();
 				
 			}
 			if (!string.IsNullOrEmpty(buttonText))
@@ -51,7 +51,7 @@ namespace Corneroids.GUI
 				Vector2 vector = Engine.font.MeasureString(parsedButtonText);
 				Rectangle positionAndSize = base.PositionAndSize;
 				Vector2 vector2;
-				vector2 = new Vector2((float)positionAndSize.X + (float)positionAndSize.Width / 2f - vector.X / 2f, (float)(positionAndSize.Y + positionAndSize.Height / 2) - vector.Y / 2f);
+				vector2 = new Vector2(positionAndSize.X + positionAndSize.Width / 2f - vector.X / 2f, (positionAndSize.Y + positionAndSize.Height / 2) - vector.Y / 2f);
 				spriteBatch.DrawString(Engine.font, parsedButtonText, vector2, Color.White);
 				//spriteBatch.End();
 			}
@@ -76,12 +76,12 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return this.buttonText;
+				return buttonText;
 			}
 			set
 			{
-				this.buttonText = value;
-				this.UpdateButtonText();
+				buttonText = value;
+				UpdateButtonText();
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace Corneroids.GUI
 		{
 			set
 			{
-				this.forceChecked = value;
+				forceChecked = value;
 			}
 		}
 
@@ -102,8 +102,8 @@ namespace Corneroids.GUI
 			set
 			{
 				base.PositionAndSize = value;
-				this.UpdateButtonText();
-				this.pressedLayer.PositionAndSize = value;
+				UpdateButtonText();
+				pressedLayer.PositionAndSize = value;
 			}
 		}
 
@@ -116,22 +116,23 @@ namespace Corneroids.GUI
 			set
 			{
 				base.Size = value;
-				this.UpdateButtonText();
+				UpdateButtonText();
 			}
 		}
 
 		private void UpdateButtonText()
 		{
-			if (!string.IsNullOrEmpty(this.buttonText))
+			if (!string.IsNullOrEmpty(buttonText))
 			{
-				this.buttonText = this.buttonText.Trim();
-				this.parsedButtonText = this.buttonText;
-				Vector2 size = this.Size;
-				Vector2 vector = Engine.font.MeasureString(this.parsedButtonText);
-				while (vector.X >= size.X && size.X >= 10f && this.parsedButtonText.Length > 0)
+				buttonText = buttonText.Trim();
+				parsedButtonText = buttonText;
+				Vector2 size = Size;
+				Vector2 vector = Engine.font.MeasureString(parsedButtonText);
+
+				while (vector.X >= size.X && size.X >= 10f && parsedButtonText.Length > 0)
 				{
-					this.parsedButtonText = this.parsedButtonText.Substring(0, this.parsedButtonText.Length - 1);
-					vector = Engine.font.MeasureString(this.parsedButtonText);
+					parsedButtonText = parsedButtonText.Substring(0, parsedButtonText.Length - 1);
+					vector = Engine.font.MeasureString(parsedButtonText);
 				}
 			}
 		}

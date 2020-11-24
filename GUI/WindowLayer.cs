@@ -16,7 +16,7 @@ namespace Corneroids.GUI
 
 		public WindowLayer(Rectangle positionAndSize) : base(positionAndSize)
 		{
-			this.blankTexture = Resources.LoadTexture2D("Content/blank.png");
+			blankTexture = Resources.LoadTexture2D("Content/blank.png");
 			//blankTexture = new Texture2D(Engine.graphicsDevice, 64,64);
 		}
 
@@ -31,9 +31,9 @@ namespace Corneroids.GUI
 			rectangle3 = new Rectangle(positionAndSize.X, positionAndSize.Y, positionAndSize.Width, positionAndSize.Height);
 			SpriteBatch spriteBatch = Engine.spriteBatch;
 			//spriteBatch.Begin();
-			spriteBatch.Draw(this.blankTexture, rectangle, this.darkBorderColor);
-			spriteBatch.Draw(this.blankTexture, rectangle2, this.lightBorderColor);
-			spriteBatch.Draw(this.blankTexture, rectangle3, this.backgroundColor);
+			spriteBatch.Draw(blankTexture, rectangle, darkBorderColor);
+			spriteBatch.Draw(blankTexture, rectangle2, lightBorderColor);
+			spriteBatch.Draw(blankTexture, rectangle3, backgroundColor);
 			//spriteBatch.End();
 		}
 	}

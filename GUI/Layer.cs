@@ -16,7 +16,7 @@ namespace Corneroids.GUI
 
 		public Layer(Rectangle positionAndSize)
 		{
-			this.layers = new List<Layer>();
+			layers = new List<Layer>();
 			this.positionAndSize = positionAndSize;
 			this.positionAndSize.Width = Math.Max(this.positionAndSize.Width, 1);
 			this.positionAndSize.Height = Math.Max(this.positionAndSize.Height, 1);
@@ -24,7 +24,7 @@ namespace Corneroids.GUI
 
 		public virtual bool Contains(Point location)
 		{
-			return this.positionAndSize.Contains(location);
+			return positionAndSize.Contains(location);
 		}
 
 		public static Rectangle EvaluateMiddlePosition(int width, int height)
@@ -36,9 +36,9 @@ namespace Corneroids.GUI
 
 		public Layer GetClickedLayer(Point mousePosition, params Type[] acceptLayers)
 		{
-			if (this.positionAndSize.Contains(mousePosition))
+			if (positionAndSize.Contains(mousePosition))
 			{
-				foreach (Layer layer in this.layers)
+				foreach (Layer layer in layers)
 				{
 					Layer clickedLayer = layer.GetClickedLayer(mousePosition, acceptLayers);
 					if (clickedLayer != null)
@@ -50,7 +50,7 @@ namespace Corneroids.GUI
 				{
 					return this;
 				}
-				if (Array.Find<Type>(acceptLayers, (Type t) => t == base.GetType()) != null)
+				if (Array.Find<Type>(acceptLayers, (Type t) => t == GetType()) != null)
 				{
 					return this;
 				}
@@ -60,7 +60,7 @@ namespace Corneroids.GUI
 
 		public Layer GetLayer(string name)
 		{
-			foreach (Layer layer in this.layers)
+			foreach (Layer layer in layers)
 			{
 				if (layer.Name == name)
 				{
@@ -76,14 +76,14 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return new Point(this.positionAndSize.X, this.positionAndSize.Y);
+				return new Point(positionAndSize.X, positionAndSize.Y);
 			}
 			set
 			{
 				Point point;
-				point = new Point(value.X - this.Location.X, value.Y - this.Location.Y);
-				this.positionAndSize = new Rectangle(value.X, value.Y, this.positionAndSize.Width, this.positionAndSize.Height);
-				foreach (Layer layer in this.layers)
+				point = new Point(value.X - Location.X, value.Y - Location.Y);
+				positionAndSize = new Rectangle(value.X, value.Y, positionAndSize.Width, positionAndSize.Height);
+				foreach (Layer layer in layers)
 				{
 					layer.Location = new Point(layer.Location.X + point.X, layer.Location.Y + point.Y);
 				}
@@ -94,11 +94,11 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return this.positionAndSize;
+				return positionAndSize;
 			}
 			set
 			{
-				this.positionAndSize = value;
+				positionAndSize = value;
 			}
 		}
 
@@ -106,11 +106,11 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return new Vector2((float)this.positionAndSize.X, (float)this.positionAndSize.Y);
+				return new Vector2(positionAndSize.X, positionAndSize.Y);
 			}
 			set
 			{
-				this.positionAndSize = new Rectangle((int)value.X, (int)value.Y, this.positionAndSize.Width, this.positionAndSize.Height);
+				positionAndSize = new Rectangle((int)value.X, (int)value.Y, positionAndSize.Width, positionAndSize.Height);
 			}
 		}
 
@@ -118,11 +118,11 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return new Vector2((float)this.positionAndSize.Width, (float)this.positionAndSize.Height);
+				return new Vector2(positionAndSize.Width, positionAndSize.Height);
 			}
 			set
 			{
-				this.positionAndSize = new Rectangle(this.positionAndSize.X, this.positionAndSize.Y, (int)value.X, (int)value.Y);
+				positionAndSize = new Rectangle(positionAndSize.X, positionAndSize.Y, (int)value.X, (int)value.Y);
 			}
 		}
 
@@ -130,11 +130,11 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return this.name;
+				return name;
 			}
 			set
 			{
-				this.name = value;
+				name = value;
 			}
 		}
 
@@ -142,17 +142,17 @@ namespace Corneroids.GUI
 		{
 			get
 			{
-				return this.tag;
+				return tag;
 			}
 			set
 			{
-				this.tag = value;
+				tag = value;
 			}
 		}
 
 		private bool PointInLayer(Point point)
 		{
-			return point.X >= 0 && point.Y >= 0 && point.X < this.positionAndSize.Width && point.Y < this.positionAndSize.Height;
+			return point.X >= 0 && point.Y >= 0 && point.X < positionAndSize.Width && point.Y < positionAndSize.Height;
 		}
 	}
 }

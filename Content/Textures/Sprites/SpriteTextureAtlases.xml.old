@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<spriteTextureAtlases>
-  <atlas>
-    <name>Default texture</name>
-    <key>defaultsprites</key>
-    <texture>Textures/Sprites/spriteImages.png</texture>
-    <blockSize>32</blockSize>
-  </atlas>
-</spriteTextureAtlases>

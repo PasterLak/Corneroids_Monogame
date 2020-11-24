@@ -36,7 +36,6 @@
   <ItemGroup>
     <Folder Include="Static\" />
     <Folder Include="GUI\" />
-    <Folder Include="Content\Shaders\Main\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="PhysicalObject.cs" />

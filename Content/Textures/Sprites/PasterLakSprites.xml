@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<spriteTextureAtlases>
-   <atlas>
-    <name>PasterLaktextures</name>
-    <key>PasterLakSprites</key>
-    <texture>Textures/PasterLaktextures/spriteImages.png</texture>
-    <blockSize>32</blockSize>
-  </atlas>
-</spriteTextureAtlases>

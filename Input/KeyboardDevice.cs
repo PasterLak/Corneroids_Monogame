@@ -20,22 +20,22 @@ namespace Corneroids
 
 		public Keys[] GetPressedKeys()
 		{
-			return this.keyboardState.GetPressedKeys();
+			return keyboardState.GetPressedKeys();
 		}
 
 		public bool GetKey(Keys key)
 		{
-			return this.keyboardState.IsKeyDown(key);
+			return keyboardState.IsKeyDown(key);
 		}
 
 		public bool GetKeyDown(Keys key)
 		{
-			return this.previousKeyboardState.IsKeyUp(key) && this.keyboardState.IsKeyDown(key);
+			return previousKeyboardState.IsKeyUp(key) && keyboardState.IsKeyDown(key);
 		}
 
 		public bool GetKeyUp(Keys key)
 		{
-			return this.previousKeyboardState.IsKeyDown(key) && this.keyboardState.IsKeyUp(key);
+			return previousKeyboardState.IsKeyDown(key) && keyboardState.IsKeyUp(key);
 		}
 
 		public static Dictionary<KeyboardDevice.Action, Keys> KeyBinds

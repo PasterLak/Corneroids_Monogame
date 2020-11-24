@@ -60,6 +60,7 @@ namespace Corneroids
             MessageReading(text,color,author);
 
         }
+
         public static void SendMessage(string text)
         {
             if (Active == false) return;
@@ -73,6 +74,7 @@ namespace Corneroids
             MessageReading(text, Color.White, "");
 
         }
+
         public static void SendMessage(string text, string author )
         {
             if (Active == false) return;

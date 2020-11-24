@@ -23,18 +23,18 @@ namespace Corneroids
 			//middleX = Engine.graphicsDevice.Viewport.Width/ 2;
 			//middleY = Engine.graphicsDevice.Viewport.Height / 2;
 
-			Mouse.SetPosition(this.middleX, this.middleY);
-			this.storedBehavior = MouseDevice.Behavior.Free;
-			this.behavior = MouseDevice.Behavior.Free;
+			Mouse.SetPosition(middleX, middleY);
+			storedBehavior = MouseDevice.Behavior.Free;
+			behavior = MouseDevice.Behavior.Free;
 		}
 
 		public override void UpdateDevice()
 		{
-			this.previousMouseState = this.mouseState;
-			this.mouseState = Mouse.GetState();
-			if (this.behavior == MouseDevice.Behavior.Wrapped)
+			previousMouseState = mouseState;
+			mouseState = Mouse.GetState();
+			if (behavior == MouseDevice.Behavior.Wrapped)
 			{
-				Mouse.SetPosition(this.middleX, this.middleY);
+				Mouse.SetPosition(middleX, middleY);
 			}
 		}
 
@@ -77,49 +77,49 @@ namespace Corneroids
 
         public void RestoreState()
 		{
-			this.behavior = this.storedBehavior;
+			behavior = storedBehavior;
 		}
 
 		public int Scroll()
 		{
-			return this.mouseState.ScrollWheelValue - this.previousMouseState.ScrollWheelValue;
+			return mouseState.ScrollWheelValue - previousMouseState.ScrollWheelValue;
 		}
 
 		public void StoreState()
 		{
-			this.storedBehavior = this.behavior;
+			storedBehavior = behavior;
 		}
 
 		public int GetTranslationX()
 		{
-			if (this.behavior == MouseDevice.Behavior.Wrapped)
+			if (behavior == MouseDevice.Behavior.Wrapped)
 			{
-				return this.mouseState.X - this.middleX;
+				return mouseState.X - middleX;
 			}
-			return this.mouseState.X - this.previousMouseState.X;
+			return mouseState.X - previousMouseState.X;
 		}
 
 		public int GetTranslationY()
 		{
-			if (this.behavior == MouseDevice.Behavior.Wrapped)
+			if (behavior == MouseDevice.Behavior.Wrapped)
 			{
-				return this.mouseState.Y - this.middleY;
+				return mouseState.Y - middleY;
 			}
-			return this.mouseState.Y - this.previousMouseState.Y;
+			return mouseState.Y - previousMouseState.Y;
 		}
 
 		public MouseDevice.Behavior CursorBehavior
 		{
 			get
 			{
-				return this.behavior;
+				return behavior;
 			}
 			set
 			{
-				this.behavior = value;
+				behavior = value;
 				if (value == MouseDevice.Behavior.Wrapped)
 				{
-					this.UpdateDevice();
+					UpdateDevice();
 				}
 			}
 		}
@@ -128,7 +128,7 @@ namespace Corneroids
 		{
 			get
 			{
-				return new Point(this.mouseState.X, this.mouseState.Y);
+				return new Point(mouseState.X, mouseState.Y);
 			}
 		}
 

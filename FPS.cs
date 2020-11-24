@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 
 namespace Corneroids
 {
@@ -13,8 +11,8 @@ namespace Corneroids
 
         public FPS()
         {
-            this.totalTime = 0f;
-            this.displayFPS = 0f;
+            totalTime = 0f;
+            displayFPS = 0f;
         }
     
         public void DrawFpsCount(GameTime gameTime)
@@ -32,7 +30,7 @@ namespace Corneroids
             }
             fps++;
 
-            Engine.spriteBatch.DrawString(Engine.font, this.displayFPS.ToString() + " FPS", new Vector2(10f, 10f), Color.White);
+            Engine.spriteBatch.DrawString(Engine.font, displayFPS.ToString() + " FPS", new Vector2(10f, 10f), Color.White);
         }
     }
 }
