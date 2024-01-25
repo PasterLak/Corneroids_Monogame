@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "eg/OW99XiPdAHwlmK8hOYoP2W0HYZnqbX+TptlzC5ERqYZfEr+bGyM7lfxV2sV0F6n5zyBAtvL2JeJW+vyma/A==",
+  "dgSpecHash": "w4sLoZADtITavBtCQTb0wrilAb/pplcrwafeY9Kj+qcFL/oCuVfDK5kHRJp8iLs7bAv9V58fYOhFOq3iunQADA==",
   "success": true,
-  "projectFilePath": "/Users/vladis/Projects/Corneroids_Monogame/Corneroids_Monogame.csproj",
+  "projectFilePath": "C:\\Projects\\Corneroids_Monogame\\Corneroids_Monogame.csproj",
   "expectedPackageFiles": [
-    "/Users/vladis/.nuget/packages/monogame.content.builder.task/3.8.0.1641/monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "/Users/vladis/.nuget/packages/monogame.framework.desktopgl/3.8.0.1641/monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\vlad-.VLAD\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
   ],
   "logs": []
 }

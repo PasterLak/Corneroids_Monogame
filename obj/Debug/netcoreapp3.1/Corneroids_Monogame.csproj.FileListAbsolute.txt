@@ -50,3 +50,5 @@
 /Users/vladis/Projects/Corneroids_Monogame/obj/Debug/netcoreapp3.1/Corneroids_Monogame.dll
 /Users/vladis/Projects/Corneroids_Monogame/obj/Debug/netcoreapp3.1/Corneroids_Monogame.pdb
 /Users/vladis/Projects/Corneroids_Monogame/obj/Debug/netcoreapp3.1/Corneroids_Monogame.genruntimeconfig.cache
+C:\Projects\Corneroids_Monogame\obj\Debug\netcoreapp3.1\Corneroids_Monogame.dll
+C:\Projects\Corneroids_Monogame\obj\Debug\netcoreapp3.1\Corneroids_Monogame.pdb
